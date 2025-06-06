@@ -1,3 +1,8 @@
+# Taller Technologies React Challenge
+
+## Screenshot
+![image](https://github.com/user-attachments/assets/7821f142-b52d-48ba-9025-a0e8aadffead)
+
 ## Demo
 https://edgarinhm.github.io/nk-react-challenge/
 
