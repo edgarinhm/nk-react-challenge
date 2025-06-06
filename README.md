@@ -6,6 +6,7 @@
 ## Demo
 https://edgarinhm.github.io/nk-react-challenge/
 
+## Challenge
 Code Challenge: Payment Transaction Dashboard
 Estimated time for completion: 30 minutes
 
