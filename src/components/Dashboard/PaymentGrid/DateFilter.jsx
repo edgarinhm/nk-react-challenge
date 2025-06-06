@@ -1,10 +1,17 @@
+import DatePicker from "react-datepicker";
+
 const DateFilter = (props) => {
-  const { onSelect } = props;
+  const { selectedDate, onSelect } = props;
   return (
-    <div>
+    <>
       <label htmlFor="dateFilter">{"Date Filter "}</label>
-      <input type="date" onChange={(event) => onSelect(event.target.value)} />
-    </div>
+      <DatePicker
+        id="dateFilter"
+        showIcon
+        selected={selectedDate}
+        onChange={(date) => onSelect(date)}
+      />
+    </>
   );
 };
 

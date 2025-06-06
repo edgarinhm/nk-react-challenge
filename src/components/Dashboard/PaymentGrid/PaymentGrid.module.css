@@ -1,4 +1,17 @@
-.row {
-  display: flex;
-  justify-content: center;
+.container {
+  display: grid;
+}
+
+.row:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.filters {
+  padding: 2rem;
+  display: inline-flex;
+  gap: 1em;
+}
+
+.grid {
+  padding: 0.5rem;
 }

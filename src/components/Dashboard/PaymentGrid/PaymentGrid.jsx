@@ -3,13 +3,18 @@ import { GetAllPayments } from "../../../common/services/payments-services";
 
 import style from "./PaymentGrid.module.css";
 import DateFilter from "./DateFilter";
+import currency from "currency.js";
+import dayjs from "dayjs";
 
 function PaymentGrid() {
   const [payments, setPayments] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const handleDateFilter = () => {};
+  const handleDateFilter = (date) => {
+    setSelectedDate(date);
+  };
 
   useEffect(() => {
     const loadPaymentsData = async () => {
@@ -27,19 +32,31 @@ function PaymentGrid() {
   }, []);
 
   return (
-    <div>
+    <div className={style.container}>
       {errorMessage && <span>{errorMessage}</span>}
-      <DateFilter onSelect={handleDateFilter} />
-      {payments.map((payment) => {
-        return (
-          <div key={payment.transactionId} className={style.row}>
-            <div>Transaction ID: {payment.transactionId}</div>
-            <div>Date: {payment.date}</div>
-            <div>Description: {payment.description}</div>
-            <div>Amount: {payment.amount}</div>
-          </div>
-        );
-      })}
+      <div className={style.filters}>
+        <DateFilter selectedDate={selectedDate} onSelect={handleDateFilter} />
+      </div>
+      <table className={style.grid}>
+        <thead>
+          <th>Transaction ID</th>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Amount</th>
+        </thead>
+        <tbody>
+          {payments.map((payment) => {
+            return (
+              <tr key={payment.transactionId} className={style.row}>
+                <td> {payment.transactionId}</td>
+                <td>{dayjs(payment.date).format("YYYY-MM-DD")}</td>
+                <td>{payment.description}</td>
+                <td>{currency(payment.amount).format()}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
       {loading && <div>{"...Loading"}</div>}
     </div>
   );
